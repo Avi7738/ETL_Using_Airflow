@@ -4,6 +4,8 @@ This project extracts tech news from NewsAPI, processes it using Python, and loa
 
 ---
 
+![Copy of Gold White Elegant Floral Blank Card](https://github.com/user-attachments/assets/ea985ee8-2408-4578-b43e-0663c7448b67)
+
 ## ⚙️ Tech Stack
 
 - Docker  
