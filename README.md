@@ -67,13 +67,13 @@ Enable & Trigger DAG: news_etl_to_snowflake
 
 # 📊 Power BI
 
-Connect to Snowflake
+- Connect to Snowflake
 
-Server: SNOWFLAKE_ACCOUNT.snowflakecomputing.com
+- Server: SNOWFLAKE_ACCOUNT.snowflakecomputing.com
 
-Table: TECH_NEWS
+- Table: TECH_NEWS
 
-Use DirectQuery for live dashboard
+- Use DirectQuery for live dashboard
 
 
 
