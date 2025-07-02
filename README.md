@@ -1,140 +1,74 @@
-# ETL_Using_Airflow
+# 🌀 News ETL Pipeline with Airflow, Python & Snowflake
 
-# 🌀 News ETL Pipeline with Apache Airflow + Snowflake + Docker
-
-This project builds an end-to-end automated pipeline to extract real-time tech news using a public API, transform the content, and load the data into a Snowflake table — all orchestrated using Apache Airflow inside Docker.
+This project extracts tech news from NewsAPI, processes it using Python, and loads it into Snowflake — all automated with Apache Airflow running in Docker.
 
 ---
 
-## 📦 Tech Stack
+## ⚙️ Tech Stack
 
-| Tool        | Role                          |
-|-------------|-------------------------------|
-| 🐳 Docker    | Containerization & orchestration |
-| 🌀 Airflow   | Workflow scheduler for ETL     |
-| 🐍 Python    | Logic: API call, JSON transform |
-| ❄️ Snowflake | Cloud data warehouse           |
-| 📊 Power BI  | Dashboard from Snowflake       |
+- Docker  
+- Apache Airflow  
+- Python  
+- Snowflake  
+- Power BI (for dashboard)
 
 ---
 
-## 🧱 Project Structure
+## 📁 Project Structure
 
-```bash
-news-etl-airflow/
-├── dags/                    # Airflow DAGs
-│   └── news_etl_to_snowflake.py
-├── config/                  # Optional configs
-├── logs/                    # Airflow logs (auto-created)
-├── plugins/                 # (empty or custom plugins)
-├── .env                     # Secret env variables (DO NOT commit)
-├── .gitignore               # Ignore .env, logs etc.
-├── docker-compose.yml       # Main Docker setup
-└── README.md                # This file
+.
+├── dags/
+│ └── news_etl_to_snowflake.py
+├── .env
+├── docker-compose.yml
+└── README.md
+
+
+---
+
+## 🔐 .env File Format
+
+```env
+NEWS_API_KEY=your_api_key
+SNOWFLAKE_USER=AVINASH
+SNOWFLAKE_PASSWORD=your_password
+SNOWFLAKE_ACCOUNT=XXXXXXXXXXXX
+SNOWFLAKE_WAREHOUSE=AIRFLOW_WH
+SNOWFLAKE_DATABASE=AIRFLOW_DB
+SNOWFLAKE_SCHEMA=PUBLIC
 ```
 
-#🚀 How to Run the Project
-## ✅ Step 1: Clone the Repository
-
+# 🚀 How to Run
+```
 git clone https://github.com/YOUR_USERNAME/news-etl-airflow.git
 cd news-etl-airflow
+docker-compose up airflow-init
+docker-compose up -d
+```
 
-## ✅ Step 2: Add .env File
-Create a .env file in the root as shown above with your News API key and Snowflake credentials.
-
-## ✅ Step 3: Start Docker Environment
-
-docker-compose up airflow-init     # Run once to initialize metadata DB
-docker-compose up -d               # Starts Airflow webserver & scheduler
-
-## ✅ Step 4: Open Airflow UI
-Go to http://localhost:8080
-Login with:
-
-Username: airflow
+Open Airflow: http://localhost:8080
+Login: airflow
 Password: airflow
-
-## ✅ Step 5: Trigger the ETL DAG
-
-In the Airflow UI, locate DAG news_etl_to_snowflake
-
-Turn it ON
-
-Click ▶️ Trigger DAG
-
-Monitor logs to confirm success
-
-# 🌀 Airflow DAG Workflow
-This DAG automates the following ETL steps:
-
-Step	Task ID	Description
-Extract news	extract_news	Calls News API for latest tech headlines
-Transform data	transform_news	Cleans HTML tags and prepares JSON
-Load to Snowflake	load_to_snowflake	Creates table (if not exists) and inserts rows
+Enable & Trigger DAG: news_etl_to_snowflake
 
 # ❄️ Snowflake Table: TECH_NEWS
-Column	Type	Description
-TITLE	STRING	News article title
-DESCRIPTION	STRING	News summary
-URL	STRING	Link to the original article
-PUBLISHED_AT	TIMESTAMP	Date/time of article publication
 
-📊 Power BI Integration
-You can connect Power BI directly to Snowflake to build real-time dashboards.
+| Column        | Type      |
+| ------------- | --------- |
+| TITLE         | STRING    |
+| DESCRIPTION   | STRING    |
+| URL           | STRING    |
+| PUBLISHED\_AT | TIMESTAMP |
 
-🧩 Steps to Connect:
-Open Power BI Desktop
+# 📊 Power BI
 
-Click Get Data → Snowflake
+Connect to Snowflake
 
-Fill the following fields:
+Server: SNOWFLAKE_ACCOUNT.snowflakecomputing.com
 
-Field	Value
-Server	nscziip-bj25145.snowflakecomputing.com
-Warehouse	AIRFLOW_WH
-Database	AIRFLOW_DB
-Schema	PUBLIC
+Table: TECH_NEWS
 
-Select the table: TECH_NEWS
+Use DirectQuery for live dashboard
 
-Choose DirectQuery for live updates
 
-Build visuals:
 
-📋 Table: news headlines + links
-
-📈 Line chart: published_at vs count
-
-🧠 Add filters by title/description/date
-
-💡 Future Improvements
-Add NLP sentiment analysis using HuggingFace or Spark NLP
-
-Load enriched data into TECH_NEWS_ENRICHED
-
-Add alerting (Slack/Email) for specific keyword-based news
-
-Add Streamlit or Flask dashboard on top of Snowflake
-
-Switch from batch to real-time Kafka ingestion
-
-👨‍💻 Author
-Avinash Rajbhar
-Data Engineer | ETL & Dashboard Automator | Real-Time Pipeline Builder
-Made with ❤️ using Docker, Python, Airflow & Snowflake
-
-yaml
-Copy
-Edit
-
----
-
-✅ Ab bhai tu yeh full `README.md` copy-paste kar de GitHub repo me — tera project ready hai interview, demo, or showcase ke liye 💯
-
-Bol — chahiye kya:
-- `.env.example`
-- `docker-compose.yml`
-- DAG file cleanup
-- Power BI `.pbix` file template?
-
-Main ready hoon 💥
