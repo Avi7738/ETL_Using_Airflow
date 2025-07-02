@@ -15,22 +15,27 @@ This project extracts tech news from NewsAPI, processes it using Python, and loa
 ---
 
 ## 📁 Project Structure
-
-.
+```
+ETL Pipeline
 ├── dags/
-│ └── news_etl_to_snowflake.py
-├── .env
-├── docker-compose.yml
-└── README.md
+│   └── news_etl_to_snowflake.py         # Main DAG definition
+│             └── extract                # Extract data from NewsAPI
+|                 transform              # Clean and normalize article data
+|                 load                   # Load data into PostgreSQL
+│
+├── docker-compose.yml          # Runs Airflow + Scheduler
+├── requirements.txt            # Python dependencies
+├── .env                        # API keys and DB credentials
+└── README.md                   # You're here
 
-
+```
 ---
 
 ## 🔐 .env File Format
 
 ```env
 NEWS_API_KEY=your_api_key
-SNOWFLAKE_USER=AVINASH
+SNOWFLAKE_USER= XYZ
 SNOWFLAKE_PASSWORD=your_password
 SNOWFLAKE_ACCOUNT=XXXXXXXXXXXX
 SNOWFLAKE_WAREHOUSE=AIRFLOW_WH
