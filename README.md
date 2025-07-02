@@ -1,4 +1,4 @@
-# 🌀 News ETL Pipeline with Airflow, Python & Snowflake
+# 🌀 News ETL Pipeline 
 
 This project extracts tech news from NewsAPI, processes it using Python, and loads it into Snowflake — all automated with Apache Airflow running in Docker.
 
