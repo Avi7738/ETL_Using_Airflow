@@ -24,7 +24,6 @@ ETL Pipeline
 |                 load                   # Load data into PostgreSQL
 │
 ├── docker-compose.yml          # Runs Airflow + Scheduler
-├── requirements.txt            # Python dependencies
 ├── .env                        # API keys and DB credentials
 └── README.md                   # You're here
 
